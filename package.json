@@ -1,0 +1,14 @@
+{
+  "name": "splatatlas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "node scripts/build-static.mjs",
+    "dev": "node scripts/dev-static.mjs",
+    "start": "node scripts/dev-static.mjs"
+  }
+}
