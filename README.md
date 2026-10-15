@@ -1,6 +1,9 @@
 # SplatAtlas
 
-[Website](https://kcbtheone.github.io/SplatAtlas/) · [Hugging Face core data](https://huggingface.co/datasets/KCBtheone/splatatlas-core) · [Run archives](https://huggingface.co/datasets/KCBtheone/splatatlas-runs) · [Draft manuscript](static/SplatAtlas.pdf)
+[![Website](https://img.shields.io/badge/Website-Benchmark-315b8a?style=flat&logo=githubpages&logoColor=white)](https://kcbtheone.github.io/SplatAtlas/)
+[![Hugging Face Data](https://img.shields.io/badge/Hugging_Face-Core_data-ffd21e?style=flat&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/KCBtheone/splatatlas-core)
+[![Hugging Face Run Archives](https://img.shields.io/badge/Hugging_Face-Run_archives-ffd21e?style=flat&logo=huggingface&logoColor=white)](https://huggingface.co/datasets/KCBtheone/splatatlas-runs)
+[![Paper: Draft, not the official version](https://img.shields.io/badge/Paper-Draft-b31b1b?style=flat)](https://kcbtheone.github.io/SplatAtlas/SplatAtlas.pdf)
 
 SplatAtlas provides a compact, table-based view of scene-level image-quality and geometry results for 3D Gaussian Splatting. Browse results by dataset or method, and select a method or value to inspect the underlying scenes.
 
