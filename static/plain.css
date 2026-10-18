@@ -135,11 +135,6 @@ svg { display: block; fill: none; stroke: currentColor; stroke-linecap: round; s
 .vol-current { flex: none; color: var(--muted) !important; font-size: 10px !important; }
 .vol-current strong { color: var(--ink); font-weight: 600; }
 .vol-current span { margin-left: 3px; color: var(--quiet); }
-.vol-banner { display: flex; min-height: 36px; margin: 10px 0 0; padding: 6px 9px; align-items: baseline; gap: 8px; border-left: 2px solid #b79a62; background: #faf8f2; color: #705928; }
-.vol-banner.is-complete { border-left-color: #6c8571; background: #f5f8f5; color: #465c4a; }
-.vol-banner strong { flex: none; font-size: 10px; }
-.vol-banner p { margin: 0; font-size: 10px; }
-.vol-notice { margin: 6px 0 0; color: var(--muted); font-size: 10px; }
 .vol-dataset-toolbar { display: flex; min-height: 42px; align-items: center; justify-content: space-between; gap: 15px; border-bottom: 1px solid var(--line-light); }
 .vol-dataset-tabs .dataset-tab { min-height: 32px; }
 .vol-dataset-tabs .dataset-tab span { color: var(--quiet); font-family: var(--mono); font-size: 9px; font-weight: 400; }
@@ -158,9 +153,7 @@ svg { display: block; fill: none; stroke: currentColor; stroke-linecap: round; s
 .vol-table tbody td:first-child.extension-column { background: #f6f2e9; }
 .extension-label { display: block; color: var(--quiet); font-family: Arial, Helvetica, sans-serif; font-size: 8px; font-weight: 400; text-align: right; }
 .vol-empty { color: #aaa; }
-.vol-coverage { color: #666; }
-.vol-notes { display: grid; margin-top: 9px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 18px; }
-.vol-note { padding: 7px 0; border-top: 1px solid var(--line-light); color: var(--muted); font-size: 10px; line-height: 1.45; }
+.vol-table .mean-column { border-left: 1px solid var(--line); background: #f4f4f4; color: var(--ink); font-weight: 700; }
 .vol-section > .table-footer { border-top: 1px solid var(--line-light); }
 .page-footer { display: flex; min-height: 39px; margin-top: 22px; padding: 8px 0; justify-content: space-between; gap: 12px; border-top: 1px solid var(--line); color: var(--quiet); font-size: 9px; }
 .toast { position: fixed; right: 18px; bottom: 17px; z-index: 40; padding: 8px 11px; border: 1px solid #333; background: #fff; color: #222; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity 140ms ease; }
@@ -182,7 +175,6 @@ svg { display: block; fill: none; stroke: currentColor; stroke-linecap: round; s
   .vol-current { margin: 0 !important; }
   .vol-dataset-toolbar { align-items: flex-start; flex-direction: column; padding: 3px 0 7px; }
   .vol-metric-tabs { flex-wrap: wrap; }
-  .vol-notes { grid-template-columns: 1fr; }
   .table-footer, .page-footer { align-items: flex-start; flex-direction: column; gap: 4px; }
 }
 
@@ -199,7 +191,6 @@ svg { display: block; fill: none; stroke: currentColor; stroke-linecap: round; s
   .project-link { padding: 9px 14px; font-size: 13px; }
   .table-controls { align-items: flex-start; flex-direction: column; gap: 6px; }
   .search-box { width: 100%; }
-  .vol-banner { align-items: flex-start; flex-direction: column; gap: 2px; }
   .method-toolbar { align-items: flex-start; flex-wrap: wrap; padding: 8px 0; }
   .method-toolbar select { min-width: 100%; max-width: 100%; }
   .method-view-tip { margin: 0; }

@@ -8,13 +8,8 @@
   "status": "complete",
   "statusLabel": "Geometry evaluation complete",
   "source": "Accepted per-cell geometry result selection, updated 2026-10-18; no public-reference placeholders.",
-  "notice": "Geometry evaluation complete: 210/210 method-scan records contain project-evaluated accuracy, completeness, and CD. Method-specific training and mesh-extraction protocols are retained.",
-  "notes": [
-    "All 14 methods have project-evaluated accuracy (A), completeness (C), and CD for all 15 scans. No published-paper values are used as placeholders.",
-    "Accuracy, completeness, and CD are in millimeters; lower is better. CD is the arithmetic mean of accuracy and completeness for each scan.",
-    "SVRaster uses the accepted raw1600_camera_matched_v2 rerun: 1600 x 1200 camera-matched inputs, native 20k training and mesh extraction, native mask cleaning, then project exact DTU evaluation without fitted alignment. The invalid earlier input-pair attempt is excluded.",
-    "Hover over a value to inspect its evaluation protocol. Per-cell origin, source reference, protocol, and applicable input revision are included in the downloadable JSON. Completion is not a claim of uniform training or strict reproduction of every original paper."
-  ],
+  "notice": "",
+  "notes": [],
   "metrics": [
     {
       "id": "accuracy",
@@ -222,6 +217,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.8716392106997629,
+        "completeness": 0.8909670539714586,
+        "cd": 0.881303132335611
       }
     },
     {
@@ -393,6 +393,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 1.8509486597463956,
+        "completeness": 1.911351831909363,
+        "cd": 1.8811502458278795
       }
     },
     {
@@ -579,6 +584,11 @@
             "evaluatorProtocol": "official-dtu"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.4199820781229499,
+        "completeness": 0.5221127105343877,
+        "cd": 0.47104739432866877
       }
     },
     {
@@ -750,6 +760,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 1.5562946248597338,
+        "completeness": 0.954446395193892,
+        "cd": 1.2553705100268127
       }
     },
     {
@@ -921,6 +936,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.5310918389982959,
+        "completeness": 0.5498185436812119,
+        "cd": 0.540455191339754
       }
     },
     {
@@ -1092,6 +1112,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 1.412041590591732,
+        "completeness": 0.8427566518003193,
+        "cd": 1.1273991211960253
       }
     },
     {
@@ -1278,6 +1303,11 @@
             "evaluatorProtocol": "official-dtu"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.472878181746555,
+        "completeness": 0.5085644192872409,
+        "cd": 0.4907213005168981
       }
     },
     {
@@ -1449,6 +1479,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 2.5424428216994652,
+        "completeness": 0.7946246748371066,
+        "cd": 1.6685337482682863
       }
     },
     {
@@ -1635,6 +1670,11 @@
             "evaluatorProtocol": "official-dtu"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.6357589914643725,
+        "completeness": 0.7838067805761549,
+        "cd": 0.7097828860202637
       }
     },
     {
@@ -1806,6 +1846,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.6619099848548509,
+        "completeness": 0.6117779188261392,
+        "cd": 0.6368439518404949
       }
     },
     {
@@ -1992,6 +2037,11 @@
             "evaluatorProtocol": "official-dtu"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.5317374040524656,
+        "completeness": 0.5671902188652961,
+        "cd": 0.549463811458881
       }
     },
     {
@@ -2163,6 +2213,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.6429474324329832,
+        "completeness": 0.552155682724093,
+        "cd": 0.5975515575785383
       }
     },
     {
@@ -2349,6 +2404,11 @@
             "inputRevision": "raw1600_camera_matched_v2"
           }
         }
+      },
+      "means": {
+        "accuracy": 0.7682444119848314,
+        "completeness": 0.7236206057354627,
+        "cd": 0.7459325088601471
       }
     },
     {
@@ -2520,6 +2580,11 @@
             "protocol": "official_dtu_cd_exact_cpp_v3_mm"
           }
         }
+      },
+      "means": {
+        "accuracy": 2.681575027102154,
+        "completeness": 0.42323838244001266,
+        "cd": 1.5524067047710832
       }
     }
   ],
@@ -2535,5 +2600,6 @@
     },
     "projectEvaluatedCells": 210,
     "publicReferenceCells": 0
-  }
+  },
+  "aggregation": "Unweighted arithmetic mean over all 15 displayed scenes; no mean is shown for incomplete coverage."
 }

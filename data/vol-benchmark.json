@@ -8,14 +8,8 @@
   "status": "complete",
   "statusLabel": "Geometry evaluation complete",
   "source": "Accepted per-cell geometry result selection, updated 2026-10-18; no public-reference placeholders.",
-  "notice": "Geometry evaluation complete: 98/98 method-scene records contain project-evaluated F-score, precision, and recall. Training, mesh readout, and alignment protocols vary by method.",
-  "notes": [
-    "All 14 methods have project-evaluated F-score, precision (P), and recall (R) for all 7 scenes. No published-paper values are used as placeholders.",
-    "F-score, precision, and recall are displayed as percentages. All three values in a cell come from the same selected result record.",
-    "Six core Tanks & Temples scenes are shown alongside the Church extension. Newly completed fixed-alignment evaluations use the frozen project C @ A transform without fitting new ICP; other cells retain their recorded evaluation route.",
-    "Hover over a value to inspect its evaluation protocol. Per-cell origin, source reference, protocol, and available threshold/readout metadata are included in the downloadable JSON. These mixed-protocol results are not a uniform-training or uniform-evaluator author reproduction.",
-    "This completion status covers the geometry evaluation shown here, not separate novel-view-synthesis experiments."
-  ],
+  "notice": "",
+  "notes": [],
   "metrics": [
     {
       "id": "f_score",
@@ -127,6 +121,11 @@
             "protocol": "2dgs_method_official_source_traj"
           }
         }
+      },
+      "means": {
+        "f_score": 0.22243610115812046,
+        "precision": 0.17841552850454495,
+        "recall": 0.3138826490670839
       }
     },
     {
@@ -210,6 +209,11 @@
             "protocol": "pgsr_tnt_shared_readout_not_method_official"
           }
         }
+      },
+      "means": {
+        "f_score": 0.05629040388828207,
+        "precision": 0.0542736441342127,
+        "recall": 0.06747406666373255
       }
     },
     {
@@ -314,6 +318,11 @@
             "preprocessingVariant": "official_DA3_450_global_Sim3_fresh_all_priors"
           }
         }
+      },
+      "means": {
+        "f_score": 0.5075096799041139,
+        "precision": 0.4981097139421634,
+        "recall": 0.5235149072805608
       }
     },
     {
@@ -397,6 +406,11 @@
             "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
           }
         }
+      },
+      "means": {
+        "f_score": 0.4721848717606884,
+        "precision": 0.521468434463004,
+        "recall": 0.44316683039663146
       }
     },
     {
@@ -480,6 +494,11 @@
             "protocol": "fixed_VoxelAtlas_C_at_A"
           }
         }
+      },
+      "means": {
+        "f_score": 0.4944191083904607,
+        "precision": 0.48117975025051,
+        "recall": 0.5149777492487718
       }
     },
     {
@@ -563,6 +582,11 @@
             "protocol": "gof_method_official_source_traj"
           }
         }
+      },
+      "means": {
+        "f_score": 0.40941553477007364,
+        "precision": 0.4644818794849583,
+        "recall": 0.37654277331879316
       }
     },
     {
@@ -646,6 +670,11 @@
             "protocol": "pgsr_tnt_shared_readout_not_method_official"
           }
         }
+      },
+      "means": {
+        "f_score": 0.44014413573311295,
+        "precision": 0.44966714612132447,
+        "recall": 0.4441116458764408
       }
     },
     {
@@ -729,6 +758,11 @@
             "protocol": "pgsr_tnt_shared_readout_not_method_official"
           }
         }
+      },
+      "means": {
+        "f_score": 0.1861805445806883,
+        "precision": 0.34840502252053607,
+        "recall": 0.12991843274430045
       }
     },
     {
@@ -812,6 +846,11 @@
             "protocol": "milo_author_source_trajectory"
           }
         }
+      },
+      "means": {
+        "f_score": 0.419282851792402,
+        "precision": 0.49309412998900376,
+        "recall": 0.3723892096009874
       }
     },
     {
@@ -895,6 +934,11 @@
             "protocol": "pgsr_method_official_source_traj"
           }
         }
+      },
+      "means": {
+        "f_score": 0.4570103393320934,
+        "precision": 0.4335665551661879,
+        "recall": 0.5002172657765381
       }
     },
     {
@@ -978,6 +1022,11 @@
             "protocol": "qgs_method_official_source_traj"
           }
         }
+      },
+      "means": {
+        "f_score": 0.47138757329403774,
+        "precision": 0.4560638454751009,
+        "recall": 0.5067592605881013
       }
     },
     {
@@ -1061,6 +1110,11 @@
             "protocol": "pgsr_tnt_shared_readout_not_method_official"
           }
         }
+      },
+      "means": {
+        "f_score": 0.4588513605034569,
+        "precision": 0.41924351050936987,
+        "recall": 0.5302651175211325
       }
     },
     {
@@ -1144,6 +1198,11 @@
             "protocol": "pgsr_tnt_shared_readout_not_method_official"
           }
         }
+      },
+      "means": {
+        "f_score": 0.3268431377095287,
+        "precision": 0.41658373269786514,
+        "recall": 0.28001247355240905
       }
     },
     {
@@ -1227,6 +1286,11 @@
             "protocol": "pgsr_tnt_shared_readout_not_method_official"
           }
         }
+      },
+      "means": {
+        "f_score": 0.2389761719976975,
+        "precision": 0.18993482606100315,
+        "recall": 0.33146289829241876
       }
     }
   ],
@@ -1242,5 +1306,6 @@
     },
     "projectEvaluatedCells": 98,
     "publicReferenceCells": 0
-  }
+  },
+  "aggregation": "Unweighted arithmetic mean over all 7 displayed scenes, including Church; no mean is shown for incomplete coverage."
 }

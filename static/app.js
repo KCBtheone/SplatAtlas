@@ -33,10 +33,8 @@ const elements = {
   volPrimaryUnit: document.querySelector('#vol-primary-unit'),
   volDatasetTabs: document.querySelector('#vol-dataset-tabs'),
   volMetricTabs: document.querySelector('#vol-metric-tabs'),
-  volNotice: document.querySelector('#vol-notice'),
   volHead: document.querySelector('#vol-head'),
   volRows: document.querySelector('#vol-rows'),
-  volNotes: document.querySelector('#vol-notes'),
   volCount: document.querySelector('#vol-count'),
   volSnapshot: document.querySelector('#vol-snapshot'),
   toast: document.querySelector('#toast'),
@@ -257,21 +255,21 @@ function renderVol() {
   `).join('');
 
   const valueFor = (method, scene) => method.scores[scene]?.[metric.id];
-  const validCells = data.methods.reduce((sum, method) => sum + scenes.filter((scene) => Number.isFinite(valueFor(method, scene))).length, 0);
-  const totalCells = summary.methods * summary.scenes;
   elements.volPrimaryMetric.textContent = metric.label;
   const direction = metric.direction ?? (metric.unit === '%' ? 'Higher is better' : 'Lower is better');
   elements.volPrimaryUnit.textContent = `${direction} · ${metric.unit}`;
-  elements.volDescription.textContent = `${data.dataset} geometry benchmark · ${summary.methods} methods × ${summary.scenes} ${isDtu ? 'scans' : 'scenes'} · ${metric.label} (${metric.unit}) · ${validCells}/${totalCells} selected values available.`;
-  elements.volNotice.textContent = data.notice;
+  elements.volDescription.textContent = `${data.dataset} · ${summary.methods} methods · ${summary.scenes} ${isDtu ? 'scans' : 'scenes'}`;
   elements.volSnapshot.textContent = data.snapshot;
-  elements.volCount.textContent = `${summary.methods} methods · ${validCells}/${totalCells} selected values · ${data.status === 'complete' ? 'project-evaluated geometry results' : 'missing and unverified cells stay blank'}`;
+  elements.volCount.textContent = `Mean: ${scenes.length} ${isDtu ? 'scans' : 'scenes (including Church)'}`;
   document.querySelector('.vol-table').classList.toggle('is-dtu', isDtu);
-  elements.volHead.innerHTML = `<tr><th>Method</th>${scenes.map((scene) => `<th class="${!isDtu && scene === 'Church' ? 'extension-column' : ''}">${isDtu ? `Scan ${escapeHtml(scene)}` : escapeHtml(scene)}${!isDtu && scene === 'Church' ? '<small class="extension-label">Extension</small>' : ''}</th>`).join('')}<th>Coverage</th></tr>`;
+  const meanDirection = metric.unit === '%' ? '↑' : '↓';
+  elements.volHead.innerHTML = `<tr><th>Method</th><th class="mean-column" title="Unweighted arithmetic mean over all displayed ${isDtu ? 'scans' : 'scenes, including Church'}">Mean ${meanDirection}</th>${scenes.map((scene) => `<th class="${!isDtu && scene === 'Church' ? 'extension-column' : ''}">${isDtu ? `Scan ${escapeHtml(scene)}` : escapeHtml(scene)}${!isDtu && scene === 'Church' ? '<small class="extension-label">Extension</small>' : ''}</th>`).join('')}</tr>`;
   elements.volRows.innerHTML = data.methods.map((method) => {
     const values = scenes.map((scene) => valueFor(method, scene));
     const coverage = values.filter(Number.isFinite).length;
-    return `<tr><td>${escapeHtml(method.name)}</td>${scenes.map((scene) => {
+    const mean = coverage === scenes.length ? values.reduce((sum, value) => sum + value, 0) / scenes.length : null;
+    const formattedMean = Number.isFinite(mean) ? (metric.unit === '%' ? (mean * 100).toFixed(2) : mean.toFixed(3)) : '—';
+    return `<tr><td>${escapeHtml(method.name)}</td><td class="mean-column"><span class="vol-mean" title="${escapeHtml(method.name)} · Mean ${escapeHtml(metric.label)}">${formattedMean}</span></td>${scenes.map((scene) => {
       const value = valueFor(method, scene);
       const sceneLabel = isDtu ? `Scan ${scene}` : scene;
       const formatted = metric.unit === '%' ? (value * 100).toFixed(2) : value?.toFixed(3);
@@ -283,9 +281,8 @@ function renderVol() {
         provenance?.inputRevision ? `Input revision: ${provenance.inputRevision}` : '',
       ].filter(Boolean).join('\n');
       return `<td class="${!isDtu && scene === 'Church' ? 'extension-column' : ''}">${Number.isFinite(value) ? `<span class="vol-value" title="${escapeHtml(tooltip)}">${formatted}</span>` : '<span class="vol-empty">—</span>'}</td>`;
-    }).join('')}<td><span class="vol-coverage">${coverage}/${scenes.length}</span></td></tr>`;
+    }).join('')}</tr>`;
   }).join('');
-  elements.volNotes.innerHTML = data.notes.map((note) => `<div class="vol-note">${escapeHtml(note)}</div>`).join('');
 }
 
 function openMethod(methodId, datasetId = state.activeDataset) {
@@ -375,8 +372,8 @@ async function initialize() {
   try {
     const [benchmarkResponse, volResponse, dtuResponse] = await Promise.all([
       fetch('./data/benchmark.json'),
-      fetch('./data/vol-benchmark.json?v=20261018'),
-      fetch('./data/vol-dtu-benchmark.json?v=20261018'),
+      fetch('./data/vol-benchmark.json?v=means-20261018'),
+      fetch('./data/vol-dtu-benchmark.json?v=means-20261018'),
     ]);
     if (!benchmarkResponse.ok) throw new Error(`SplatAtlas data unavailable (HTTP ${benchmarkResponse.status}).`);
     if (!volResponse.ok) throw new Error(`SplatAtlasVol data unavailable (HTTP ${volResponse.status}).`);
