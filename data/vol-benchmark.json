@@ -3,612 +3,19 @@
   "dataset": "Tanks & Temples",
   "metric": "F-score",
   "unit": "%",
-  "snapshot": "2026-10-11",
-  "status": "in_progress",
-  "statusLabel": "Work in progress",
-  "notice": "Provisional snapshot only. Some values are under review and are being rerun; do not treat this table as final or cite it as a finalized benchmark.",
+  "snapshot": "2026-10-18",
+  "checkedAt": "2026-10-18T11:23:42.682195+08:00",
+  "status": "complete",
+  "statusLabel": "Geometry evaluation complete",
+  "source": "Accepted per-cell geometry result selection, updated 2026-10-18; no public-reference placeholders.",
+  "notice": "Geometry evaluation complete: 98/98 method-scene records contain project-evaluated F-score, precision, and recall. Training, mesh readout, and alignment protocols vary by method.",
   "notes": [
-    "Use the metric selector to switch between F-score, precision (P), and recall (R); P and R come from the same selected result record. Unavailable or unverified cells remain blank.",
-    "This is the SplatAtlasVol Tanks & Temples geometry benchmark: six core scenes are shown alongside the project's Church extension scene.",
-    "GeoSVR and AmbiSuR have rerun entries in the project queue; several values are being checked or rerun, so this snapshot is not final.",
-    "The SplatAtlasVol NVS LPIPS values are not shown here because the historical table used an incorrect input range and standard LPIPS is being recomputed."
+    "All 14 methods have project-evaluated F-score, precision (P), and recall (R) for all 7 scenes. No published-paper values are used as placeholders.",
+    "F-score, precision, and recall are displayed as percentages. All three values in a cell come from the same selected result record.",
+    "Six core Tanks & Temples scenes are shown alongside the Church extension. Newly completed fixed-alignment evaluations use the frozen project C @ A transform without fitting new ICP; other cells retain their recorded evaluation route.",
+    "Hover over a value to inspect its evaluation protocol. Per-cell origin, source reference, protocol, and available threshold/readout metadata are included in the downloadable JSON. These mixed-protocol results are not a uniform-training or uniform-evaluator author reproduction.",
+    "This completion status covers the geometry evaluation shown here, not separate novel-view-synthesis experiments."
   ],
-  "scenes": [
-    "Barn",
-    "Caterpillar",
-    "Church",
-    "Courthouse",
-    "Ignatius",
-    "Meetingroom",
-    "Truck"
-  ],
-  "methods": [
-    {
-      "id": "2dgs",
-      "name": "2DGS",
-      "scores": {
-        "Barn": {
-          "f_score": 0.295,
-          "precision": 0.2377,
-          "recall": 0.3888
-        },
-        "Caterpillar": {
-          "f_score": 0.1517,
-          "precision": 0.0987,
-          "recall": 0.3271
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.0792,
-          "precision": 0.0539,
-          "recall": 0.1496
-        },
-        "Ignatius": {
-          "f_score": 0.3918,
-          "precision": 0.3058,
-          "recall": 0.5452
-        },
-        "Meetingroom": {
-          "f_score": 0.1729,
-          "precision": 0.1492,
-          "recall": 0.2056
-        },
-        "Truck": {
-          "f_score": 0.2502,
-          "precision": 0.1917,
-          "recall": 0.3601
-        }
-      }
-    },
-    {
-      "id": "vanilla",
-      "name": "3DGS",
-      "scores": {
-        "Barn": {
-          "f_score": 0.1315422121514503,
-          "precision": 0.1120497828884745,
-          "recall": 0.1592447896887484
-        },
-        "Caterpillar": {
-          "f_score": 0.0322295622522468,
-          "precision": 0.0459747038747239,
-          "recall": 0.0248115943405861
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.0135757886669083,
-          "precision": 0.0096284986540979,
-          "recall": 0.0230082137729797
-        },
-        "Ignatius": {
-          "f_score": 0.0386817551548506,
-          "precision": 0.0486863790725619,
-          "recall": 0.0320879606534105
-        },
-        "Meetingroom": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Truck": {
-          "f_score": 0.1453595105808542,
-          "precision": 0.1115813330125581,
-          "recall": 0.2084672255778147
-        }
-      }
-    },
-    {
-      "id": "ambisur",
-      "name": "AmbiSuR",
-      "scores": {
-        "Barn": {
-          "f_score": 0.4922281087922084,
-          "precision": 0.4400042099151326,
-          "recall": 0.5585184031839103
-        },
-        "Caterpillar": {
-          "f_score": 0.3945858225127923,
-          "precision": 0.3343588777498811,
-          "recall": 0.4812765567069564
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.2197243497006494,
-          "precision": 0.1993816757212685,
-          "recall": 0.2446897525894325
-        },
-        "Ignatius": {
-          "f_score": 0.8083644102432939,
-          "precision": 0.8211553351537761,
-          "recall": 0.7959658553640722
-        },
-        "Meetingroom": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Truck": {
-          "f_score": 0.5047667713615002,
-          "precision": 0.632569820369485,
-          "recall": 0.419925853154184
-        }
-      }
-    },
-    {
-      "id": "come",
-      "name": "CoMe",
-      "scores": {
-        "Barn": {
-          "f_score": 0.5133401441250309,
-          "precision": 0.5335956635593628,
-          "recall": 0.494566199814677
-        },
-        "Caterpillar": {
-          "f_score": 0.4115536491529766,
-          "precision": 0.4203462927520971,
-          "recall": 0.4031213111561326
-        },
-        "Church": {
-          "f_score": 0.4666991328367103,
-          "precision": 0.5397090108749442,
-          "recall": 0.4110885626625208
-        },
-        "Courthouse": {
-          "f_score": 0.2303591705191116,
-          "precision": 0.3835903861329937,
-          "recall": 0.1646050808707353
-        },
-        "Ignatius": {
-          "f_score": 0.7761408124014365,
-          "precision": 0.7951329477937972,
-          "recall": 0.7580347845967458
-        },
-        "Meetingroom": {
-          "f_score": 0.325852041616413,
-          "precision": 0.4170114654190902,
-          "recall": 0.2673983108169789
-        },
-        "Truck": {
-          "f_score": 0.5813491516731402,
-          "precision": 0.5608932747087427,
-          "recall": 0.60335356285863
-        }
-      }
-    },
-    {
-      "id": "geosvr",
-      "name": "GeoSVR",
-      "scores": {
-        "Barn": {
-          "f_score": 0.5674747367864256,
-          "precision": 0.5567456450324239,
-          "recall": 0.5786254765991706
-        },
-        "Caterpillar": {
-          "f_score": 0.4365854242766408,
-          "precision": 0.3553439057815219,
-          "recall": 0.5659854750102723
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.1841543140680262,
-          "precision": 0.1579977716188806,
-          "recall": 0.2206894720261815
-        },
-        "Ignatius": {
-          "f_score": 0.7959088003054945,
-          "precision": 0.8142140384878044,
-          "recall": 0.778408544672661
-        },
-        "Meetingroom": {
-          "f_score": 0.372281319753082,
-          "precision": 0.3783186353229409,
-          "recall": 0.3664336678489234
-        },
-        "Truck": {
-          "f_score": 0.3727957163785447,
-          "precision": 0.5010063938822265,
-          "recall": 0.2968340275736182
-        }
-      }
-    },
-    {
-      "id": "gof",
-      "name": "GOF",
-      "scores": {
-        "Barn": {
-          "f_score": 0.4576,
-          "precision": 0.4947,
-          "recall": 0.4256
-        },
-        "Caterpillar": {
-          "f_score": 0.3663,
-          "precision": 0.3698,
-          "recall": 0.3629
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.2601,
-          "precision": 0.411,
-          "recall": 0.1902
-        },
-        "Ignatius": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Meetingroom": {
-          "f_score": 0.2512,
-          "precision": 0.349,
-          "recall": 0.1963
-        },
-        "Truck": {
-          "f_score": 0.552,
-          "precision": 0.5412,
-          "recall": 0.5633
-        }
-      }
-    },
-    {
-      "id": "gvgs",
-      "name": "GVGS",
-      "scores": {
-        "Barn": {
-          "f_score": 0.5018622410161384,
-          "precision": 0.5662850245000834,
-          "recall": 0.4506002111467241
-        },
-        "Caterpillar": {
-          "f_score": 0.3810178184240098,
-          "precision": 0.2985194098266724,
-          "recall": 0.5265285025164298
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.1001183780050288,
-          "precision": 0.1045088973362089,
-          "recall": 0.096081885547222
-        },
-        "Ignatius": {
-          "f_score": 0.7760025650241906,
-          "precision": 0.8192119840699129,
-          "recall": 0.7371229408734556
-        },
-        "Meetingroom": {
-          "f_score": 0.3045998403200294,
-          "precision": 0.3223624883249196,
-          "recall": 0.2886924604529207
-        },
-        "Truck": {
-          "f_score": 0.6321100556297126,
-          "precision": 0.6047413244964455,
-          "recall": 0.6620734628957066
-        }
-      }
-    },
-    {
-      "id": "meshsplatting",
-      "name": "MeshSplatting",
-      "scores": {
-        "Barn": {
-          "f_score": 0.1743987893685635,
-          "precision": 0.333939195896247,
-          "recall": 0.1180162081694034
-        },
-        "Caterpillar": {
-          "f_score": 0.1620816304332548,
-          "precision": 0.2542359306963941,
-          "recall": 0.1189611325003028
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.0392914057016483,
-          "precision": 0.1970408753997855,
-          "recall": 0.0218213744599056
-        },
-        "Ignatius": {
-          "f_score": 0.2677355342367103,
-          "precision": 0.5768164170826401,
-          "recall": 0.1743252311487775
-        },
-        "Meetingroom": {
-          "f_score": 0.1306500289114106,
-          "precision": 0.2350060805456809,
-          "recall": 0.0904742995938319
-        },
-        "Truck": {
-          "f_score": 0.2965222926253341,
-          "precision": 0.4763812358476647,
-          "recall": 0.2152529831645264
-        }
-      }
-    },
-    {
-      "id": "milo",
-      "name": "MILo",
-      "scores": {
-        "Barn": {
-          "f_score": 0.4762,
-          "precision": 0.5514,
-          "recall": 0.4191
-        },
-        "Caterpillar": {
-          "f_score": 0.3477,
-          "precision": 0.3538,
-          "recall": 0.3417
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.2252,
-          "precision": 0.3231,
-          "recall": 0.1728
-        },
-        "Ignatius": {
-          "f_score": 0.7033,
-          "precision": 0.7816,
-          "recall": 0.6392
-        },
-        "Meetingroom": {
-          "f_score": 0.2399,
-          "precision": 0.3636,
-          "recall": 0.1789
-        },
-        "Truck": {
-          "f_score": 0.5768,
-          "precision": 0.5934,
-          "recall": 0.5612
-        }
-      }
-    },
-    {
-      "id": "pgsr",
-      "name": "PGSR",
-      "scores": {
-        "Barn": {
-          "f_score": 0.5551253780732297,
-          "precision": 0.5484752818908833,
-          "recall": 0.5619387142835442
-        },
-        "Caterpillar": {
-          "f_score": 0.3764429720542047,
-          "precision": 0.2794747491239949,
-          "recall": 0.576452291150575
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.1364114943154754,
-          "precision": 0.1060413806263921,
-          "recall": 0.1911592573506963
-        },
-        "Ignatius": {
-          "f_score": 0.8089959698583044,
-          "precision": 0.8250637221913004,
-          "recall": 0.7935420874680079
-        },
-        "Meetingroom": {
-          "f_score": 0.2841663745270767,
-          "precision": 0.2805624590148915,
-          "recall": 0.2878640817443648
-        },
-        "Truck": {
-          "f_score": 0.6533926879874777,
-          "precision": 0.6018536700927212,
-          "recall": 0.7145853480483909
-        }
-      }
-    },
-    {
-      "id": "qgs",
-      "name": "QGS",
-      "scores": {
-        "Barn": {
-          "f_score": 0.5434,
-          "precision": 0.5297,
-          "recall": 0.5578
-        },
-        "Caterpillar": {
-          "f_score": 0.3771,
-          "precision": 0.2763,
-          "recall": 0.5937
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Ignatius": {
-          "f_score": 0.7747,
-          "precision": 0.7926,
-          "recall": 0.7575
-        },
-        "Meetingroom": {
-          "f_score": 0.3538,
-          "precision": 0.3807,
-          "recall": 0.3304
-        },
-        "Truck": {
-          "f_score": 0.6111,
-          "precision": 0.5629,
-          "recall": 0.6684
-        }
-      }
-    },
-    {
-      "id": "radegs",
-      "name": "RaDe-GS",
-      "scores": {
-        "Barn": {
-          "f_score": 0.5537679551831547,
-          "precision": 0.5312802154141556,
-          "recall": 0.578243532682171
-        },
-        "Caterpillar": {
-          "f_score": 0.3521535802392749,
-          "precision": 0.2549005146258422,
-          "recall": 0.5693979153653039
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Ignatius": {
-          "f_score": 0.7738895991112723,
-          "precision": 0.7763443871960177,
-          "recall": 0.7714502860930966
-        },
-        "Meetingroom": {
-          "f_score": 0.361995800492106,
-          "precision": 0.3392446217131009,
-          "recall": 0.3880179230924784
-        },
-        "Truck": {
-          "f_score": 0.6228433617764394,
-          "precision": 0.5472970046741553,
-          "recall": 0.7225857728780192
-        }
-      }
-    },
-    {
-      "id": "svraster",
-      "name": "SVRaster",
-      "scores": {
-        "Barn": {
-          "f_score": 0.3008886777110774,
-          "precision": 0.3520736112525534,
-          "recall": 0.262697380413483
-        },
-        "Caterpillar": {
-          "f_score": 0.2727232036332163,
-          "precision": 0.2803031373330404,
-          "recall": 0.2655424277906957
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": 0.2059595719979132,
-          "precision": 0.2949234342257797,
-          "recall": 0.1582295242547336
-        },
-        "Ignatius": {
-          "f_score": 0.6174437821350793,
-          "precision": 0.7096738196338653,
-          "recall": 0.5464292051715339
-        },
-        "Meetingroom": {
-          "f_score": 0.1722188514767449,
-          "precision": 0.3491947691617194,
-          "recall": 0.1142935621273792
-        },
-        "Truck": {
-          "f_score": 0.4418681678505037,
-          "precision": 0.4733848178574409,
-          "recall": 0.4142861438681697
-        }
-      }
-    },
-    {
-      "id": "trianglesplatting",
-      "name": "Triangle Splatting",
-      "scores": {
-        "Barn": {
-          "f_score": 0.198097391394042,
-          "precision": 0.1659546129651046,
-          "recall": 0.2456821254424207
-        },
-        "Caterpillar": {
-          "f_score": 0.2052690736165147,
-          "precision": 0.1482476112192701,
-          "recall": 0.3335737638142378
-        },
-        "Church": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Courthouse": {
-          "f_score": null,
-          "precision": null,
-          "recall": null
-        },
-        "Ignatius": {
-          "f_score": 0.3446803583134759,
-          "precision": 0.2717517989453204,
-          "recall": 0.4711094519534349
-        },
-        "Meetingroom": {
-          "f_score": 0.1742074267565623,
-          "precision": 0.1586200849296904,
-          "recall": 0.193192105723967
-        },
-        "Truck": {
-          "f_score": 0.3506793682330794,
-          "precision": 0.2561423182791314,
-          "recall": 0.5558223892251946
-        }
-      }
-    }
-  ],
-  "summary": {
-    "methods": 14,
-    "scenes": 7,
-    "validCells": 79,
-    "totalCells": 98,
-    "validCellsByMetric": {
-      "f_score": 79,
-      "precision": 79,
-      "recall": 79
-    }
-  },
   "metrics": [
     {
       "id": "f_score",
@@ -628,5 +35,1212 @@
       "unit": "%",
       "direction": "Higher is better"
     }
-  ]
+  ],
+  "scenes": [
+    "Barn",
+    "Caterpillar",
+    "Church",
+    "Courthouse",
+    "Ignatius",
+    "Meetingroom",
+    "Truck"
+  ],
+  "methods": [
+    {
+      "id": "2dgs",
+      "name": "2DGS",
+      "scores": {
+        "Barn": {
+          "f_score": 0.295,
+          "precision": 0.2377,
+          "recall": 0.3888,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/2dgs_Barn_standard_v2/result.json",
+            "protocol": "2dgs_method_official_source_traj"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.1517,
+          "precision": 0.0987,
+          "recall": 0.3271,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/2dgs_Caterpillar_standard_v2/result.json",
+            "protocol": "2dgs_method_official_source_traj"
+          }
+        },
+        "Church": {
+          "f_score": 0.2162527081068431,
+          "precision": 0.21190869953181465,
+          "recall": 0.2207785434695871,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.0792,
+          "precision": 0.0539,
+          "recall": 0.1496,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/2dgs_Courthouse_standard_v2/result.json",
+            "protocol": "2dgs_method_official_source_traj"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.3918,
+          "precision": 0.3058,
+          "recall": 0.5452,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/2dgs_Ignatius_standard_v2/result.json",
+            "protocol": "2dgs_method_official_source_traj"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.1729,
+          "precision": 0.1492,
+          "recall": 0.2056,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/2dgs_Meetingroom_standard_v2/result.json",
+            "protocol": "2dgs_method_official_source_traj"
+          }
+        },
+        "Truck": {
+          "f_score": 0.2502,
+          "precision": 0.1917,
+          "recall": 0.3601,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/2dgs_Truck_standard_v2/result.json",
+            "protocol": "2dgs_method_official_source_traj"
+          }
+        }
+      }
+    },
+    {
+      "id": "vanilla",
+      "name": "3DGS",
+      "scores": {
+        "Barn": {
+          "f_score": 0.1315422121514503,
+          "precision": 0.1120497828884745,
+          "recall": 0.15924478968874847,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/vanilla_Barn_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.03222956225224687,
+          "precision": 0.04597470387472395,
+          "recall": 0.02481159434058613,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/vanilla_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.010708213213022785,
+          "precision": 0.012165352389364413,
+          "recall": 0.009562801824360579,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.013575788666908317,
+          "precision": 0.009628498654097966,
+          "recall": 0.023008213772979732,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/vanilla_Courthouse_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.038681755154850644,
+          "precision": 0.0486863790725619,
+          "recall": 0.03208796065341052,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/vanilla_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.021935785198641387,
+          "precision": 0.03982945904770799,
+          "recall": 0.015135880788227724,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Truck": {
+          "f_score": 0.1453595105808542,
+          "precision": 0.11158133301255814,
+          "recall": 0.2084672255778147,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_vanilla_Truck_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        }
+      }
+    },
+    {
+      "id": "ambisur",
+      "name": "AmbiSuR",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5605202267227931,
+          "precision": 0.5367195575120142,
+          "recall": 0.5865297124455044,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Barn/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.01,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "user_chunked_DA3_per_chunk_COLMAP_Sim3_and_depth_scale"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.4494911293063282,
+          "precision": 0.37317996752187815,
+          "recall": 0.5650343916035085,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Caterpillar/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.005,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "user_chunked_DA3_per_chunk_COLMAP_Sim3_and_depth_scale"
+          }
+        },
+        "Church": {
+          "f_score": 0.4611298256533783,
+          "precision": 0.4802877940773673,
+          "recall": 0.4434415974161771,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Church/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.025,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "user_chunked_DA3_per_chunk_COLMAP_Sim3_and_depth_scale"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.2076359768516099,
+          "precision": 0.19491395314447074,
+          "recall": 0.22213469711940195,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Courthouse/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.025,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "user_chunked_DA3_per_chunk_COLMAP_Sim3_and_depth_scale"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7649566133439248,
+          "precision": 0.7805826459014632,
+          "recall": 0.7499439197265292,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Ignatius/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.003,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "official_DA3_450_global_Sim3_fresh_all_priors"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.41311613132259317,
+          "precision": 0.4274022497209165,
+          "recall": 0.39975416304287037,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Meetingroom/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.01,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "user_chunked_DA3_per_chunk_COLMAP_Sim3_and_depth_scale"
+          }
+        },
+        "Truck": {
+          "f_score": 0.6957178561281698,
+          "precision": 0.6936818297170333,
+          "recall": 0.6977658696099341,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "common_scene_rootcause_20261009/single_training_policy_v1/ambisur_tnt_official_20261016_v1/cells/ambisur/tnt_Truck/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A; scene preprocessing variant annotated separately",
+            "thresholdMeters": 0.005,
+            "sampling": "all vertices plus all triangle centroids; common current readout",
+            "preprocessingVariant": "official_DA3_450_global_Sim3_fresh_all_priors"
+          }
+        }
+      }
+    },
+    {
+      "id": "come",
+      "name": "CoMe",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5133401441250309,
+          "precision": 0.5335956635593628,
+          "recall": 0.494566199814677,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Barn/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.4115536491529766,
+          "precision": 0.4203462927520971,
+          "recall": 0.40312131115613264,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Caterpillar/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Church": {
+          "f_score": 0.46669913283671033,
+          "precision": 0.5397090108749442,
+          "recall": 0.4110885626625208,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Church/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.23035917051911167,
+          "precision": 0.3835903861329937,
+          "recall": 0.16460508087073536,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Courthouse/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7761408124014365,
+          "precision": 0.7951329477937972,
+          "recall": 0.7580347845967458,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Ignatius/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.325852041616413,
+          "precision": 0.4170114654190902,
+          "recall": 0.26739831081697896,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Meetingroom/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Truck": {
+          "f_score": 0.5813491516731402,
+          "precision": 0.5608932747087427,
+          "recall": 0.60335356285863,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "come_tnt_user_alignment_eval_20261010_v1/cells/Truck/result.json",
+            "protocol": "CoMe native vertices plus triangle centroids; fixed_VoxelAtlas_C_at_A"
+          }
+        }
+      }
+    },
+    {
+      "id": "geosvr",
+      "name": "GeoSVR",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5674747367864256,
+          "precision": 0.5567456450324239,
+          "recall": 0.5786254765991706,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/geosvr_Barn_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.4365854242766408,
+          "precision": 0.3553439057815219,
+          "recall": 0.5659854750102723,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/geosvr_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.4692196225003598,
+          "precision": 0.4669842260259474,
+          "recall": 0.471476523052158,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.21428062152104868,
+          "precision": 0.2128005758530335,
+          "recall": 0.21578139906189703,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "geo_ambi_author_rerun_20261010_v1/cells/geosvr/tnt_Courthouse/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7959088003054945,
+          "precision": 0.8142140384878044,
+          "recall": 0.778408544672661,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/geosvr_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.372281319753082,
+          "precision": 0.37831863532294097,
+          "recall": 0.36643366784892345,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_geosvr_Meetingroom_legacy/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Truck": {
+          "f_score": 0.6051832335901737,
+          "precision": 0.5838512252498981,
+          "recall": 0.6281331584963207,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "geo_ambi_author_rerun_20261010_v1/cells/geosvr/tnt_Truck/result.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        }
+      }
+    },
+    {
+      "id": "gof",
+      "name": "GOF",
+      "scores": {
+        "Barn": {
+          "f_score": 0.4576,
+          "precision": 0.4947,
+          "recall": 0.4256,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/gof_Barn_standard_v2/result.json",
+            "protocol": "gof_method_official_source_traj"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.3663,
+          "precision": 0.3698,
+          "recall": 0.3629,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/gof_Caterpillar_standard_v2/result.json",
+            "protocol": "gof_method_official_source_traj"
+          }
+        },
+        "Church": {
+          "f_score": 0.2984463304055516,
+          "precision": 0.36781335668519066,
+          "recall": 0.2510921140431738,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.2601,
+          "precision": 0.411,
+          "recall": 0.1902,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/gof_Courthouse_standard_v2/result.json",
+            "protocol": "gof_method_official_source_traj"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.6802624129849639,
+          "precision": 0.7178597997095175,
+          "recall": 0.6464072991883786,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "first_wave_reuse/gof/tnt_Ignatius__resolution_standard_v2",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.2512,
+          "precision": 0.349,
+          "recall": 0.1963,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/gof_Meetingroom_standard_v2/result.json",
+            "protocol": "gof_method_official_source_traj"
+          }
+        },
+        "Truck": {
+          "f_score": 0.552,
+          "precision": 0.5412,
+          "recall": 0.5633,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_gof_Truck_legacy/result.json",
+            "protocol": "gof_method_official_source_traj"
+          }
+        }
+      }
+    },
+    {
+      "id": "gvgs",
+      "name": "GVGS",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5018622410161384,
+          "precision": 0.5662850245000834,
+          "recall": 0.45060021114672416,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/gvgs_Barn_gvgs_author_recipe_60k/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.3810178184240098,
+          "precision": 0.2985194098266724,
+          "recall": 0.5265285025164298,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/gvgs_Caterpillar_gvgs_author_recipe_60k/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.3852980517126812,
+          "precision": 0.43204089429502845,
+          "recall": 0.3476820577026265,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.10011837800502882,
+          "precision": 0.10450889733620895,
+          "recall": 0.096081885547222,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_gvgs_Courthouse_legacy30k_user_selected/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7760025650241906,
+          "precision": 0.8192119840699129,
+          "recall": 0.7371229408734556,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_gvgs_Ignatius_gvgs_author_recipe_60k/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.30459984032002946,
+          "precision": 0.32236248832491965,
+          "recall": 0.2886924604529207,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_gvgs_Meetingroom_gvgs_author_recipe_60k/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Truck": {
+          "f_score": 0.6321100556297126,
+          "precision": 0.6047413244964455,
+          "recall": 0.6620734628957066,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_gvgs_Truck_gvgs_author_recipe_60k/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        }
+      }
+    },
+    {
+      "id": "meshsplatting",
+      "name": "MeshSplatting",
+      "scores": {
+        "Barn": {
+          "f_score": 0.1743987893685635,
+          "precision": 0.33393919589624704,
+          "recall": 0.11801620816940347,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/meshsplatting_Barn_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.16208163043325488,
+          "precision": 0.25423593069639416,
+          "recall": 0.11896113250030282,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/meshsplatting_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.23258413078789622,
+          "precision": 0.3654154221753395,
+          "recall": 0.17057780017335553,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.03929140570164831,
+          "precision": 0.19704087539978551,
+          "recall": 0.021821374459905604,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/meshsplatting_Courthouse_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.26773553423671037,
+          "precision": 0.5768164170826401,
+          "recall": 0.1743252311487775,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/meshsplatting_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.13065002891141064,
+          "precision": 0.23500608054568095,
+          "recall": 0.09047429959383196,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_meshsplatting_Meetingroom_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Truck": {
+          "f_score": 0.2965222926253341,
+          "precision": 0.47638123584766473,
+          "recall": 0.21525298316452646,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_meshsplatting_Truck_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        }
+      }
+    },
+    {
+      "id": "milo",
+      "name": "MILo",
+      "scores": {
+        "Barn": {
+          "f_score": 0.4762,
+          "precision": 0.5514,
+          "recall": 0.4191,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/milo_Barn_milo_author_recipe_18k/result.json",
+            "protocol": "milo_author_source_trajectory"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.3477,
+          "precision": 0.3538,
+          "recall": 0.3417,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/milo_Caterpillar_milo_author_recipe_18k/result.json",
+            "protocol": "milo_author_source_trajectory"
+          }
+        },
+        "Church": {
+          "f_score": 0.36587996254681365,
+          "precision": 0.48475890992302684,
+          "recall": 0.2938244672069122,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.2252,
+          "precision": 0.3231,
+          "recall": 0.1728,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/milo_Courthouse_milo_author_recipe_18k/result.json",
+            "protocol": "milo_author_source_trajectory"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7033,
+          "precision": 0.7816,
+          "recall": 0.6392,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/milo_Ignatius_milo_author_recipe_18k/result.json",
+            "protocol": "milo_author_source_trajectory"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.2399,
+          "precision": 0.3636,
+          "recall": 0.1789,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/milo_Meetingroom_milo_author_recipe_18k/result.json",
+            "protocol": "milo_author_source_trajectory"
+          }
+        },
+        "Truck": {
+          "f_score": 0.5768,
+          "precision": 0.5934,
+          "recall": 0.5612,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/milo_Truck_milo_author_recipe_18k/result.json",
+            "protocol": "milo_author_source_trajectory"
+          }
+        }
+      }
+    },
+    {
+      "id": "pgsr",
+      "name": "PGSR",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5551253780732297,
+          "precision": 0.5484752818908833,
+          "recall": 0.5619387142835442,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/pgsr_Barn_standard_v2/result.json",
+            "protocol": "pgsr_method_official_source_traj"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.3764429720542047,
+          "precision": 0.27947474912399495,
+          "recall": 0.576452291150575,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/pgsr_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_method_official_source_traj"
+          }
+        },
+        "Church": {
+          "f_score": 0.3845374985088848,
+          "precision": 0.3934946232231317,
+          "recall": 0.3759790803901875,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.13641149431547547,
+          "precision": 0.10604138062639219,
+          "recall": 0.19115925735069636,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/pgsr_Courthouse_standard_v2/result.json",
+            "protocol": "pgsr_method_official_source_traj"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.8089959698583044,
+          "precision": 0.8250637221913004,
+          "recall": 0.7935420874680079,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/pgsr_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_method_official_source_traj"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.2841663745270767,
+          "precision": 0.2805624590148915,
+          "recall": 0.2878640817443648,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/pgsr_Meetingroom_standard_v2/result.json",
+            "protocol": "pgsr_method_official_source_traj"
+          }
+        },
+        "Truck": {
+          "f_score": 0.6533926879874777,
+          "precision": 0.6018536700927212,
+          "recall": 0.7145853480483909,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/pgsr_Truck_standard_v2/result.json",
+            "protocol": "pgsr_method_official_source_traj"
+          }
+        }
+      }
+    },
+    {
+      "id": "qgs",
+      "name": "QGS",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5434,
+          "precision": 0.5297,
+          "recall": 0.5578,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/qgs_Barn_standard_v2/result.json",
+            "protocol": "qgs_method_official_source_traj"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.3771,
+          "precision": 0.2763,
+          "recall": 0.5937,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/qgs_Caterpillar_standard_v2/result.json",
+            "protocol": "qgs_method_official_source_traj"
+          }
+        },
+        "Church": {
+          "f_score": 0.46545276206891684,
+          "precision": 0.49716615648827195,
+          "recall": 0.4375426509637742,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.1741602509893471,
+          "precision": 0.1530807618374347,
+          "recall": 0.20197217315293495,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "first_wave_reuse/qgs/tnt_Courthouse__resolution_standard_v2",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7747,
+          "precision": 0.7926,
+          "recall": 0.7575,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_qgs_Ignatius_standard_v2/result.json",
+            "protocol": "qgs_method_official_source_traj"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.3538,
+          "precision": 0.3807,
+          "recall": 0.3304,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_qgs_Meetingroom_standard_v2/result.json",
+            "protocol": "qgs_method_official_source_traj"
+          }
+        },
+        "Truck": {
+          "f_score": 0.6111,
+          "precision": 0.5629,
+          "recall": 0.6684,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_qgs_Truck_legacy/result.json",
+            "protocol": "qgs_method_official_source_traj"
+          }
+        }
+      }
+    },
+    {
+      "id": "radegs",
+      "name": "RaDe-GS",
+      "scores": {
+        "Barn": {
+          "f_score": 0.5537679551831547,
+          "precision": 0.5312802154141556,
+          "recall": 0.578243532682171,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/radegs_Barn_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.3521535802392749,
+          "precision": 0.2549005146258422,
+          "recall": 0.5693979153653039,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/radegs_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.4358476278881087,
+          "precision": 0.4107622501102815,
+          "recall": 0.46419623570848756,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.11146159883384198,
+          "precision": 0.07487557983203606,
+          "recall": 0.2179641568283703,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "first_wave_reuse/radegs/tnt_Courthouse__resolution_standard_v2",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.7738895991112723,
+          "precision": 0.7763443871960177,
+          "recall": 0.7714502860930966,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_radegs_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.36199580049210606,
+          "precision": 0.3392446217131009,
+          "recall": 0.38801792309247846,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/radegs_Meetingroom_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Truck": {
+          "f_score": 0.6228433617764394,
+          "precision": 0.5472970046741553,
+          "recall": 0.7225857728780192,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_radegs_Truck_legacy/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        }
+      }
+    },
+    {
+      "id": "svraster",
+      "name": "SVRaster",
+      "scores": {
+        "Barn": {
+          "f_score": 0.30088867771107747,
+          "precision": 0.35207361125255343,
+          "recall": 0.262697380413483,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/svraster_Barn_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.2727232036332163,
+          "precision": 0.2803031373330404,
+          "recall": 0.26554242779069576,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/svraster_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.276799709162166,
+          "precision": 0.4565325394206563,
+          "recall": 0.19860907124086788,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.20595957199791326,
+          "precision": 0.29492343422577977,
+          "recall": 0.1582295242547336,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/svraster_Courthouse_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.6174437821350793,
+          "precision": 0.7096738196338653,
+          "recall": 0.5464292051715339,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_svraster_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.17221885147674496,
+          "precision": 0.3491947691617194,
+          "recall": 0.1142935621273792,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/svraster_Meetingroom_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Truck": {
+          "f_score": 0.44186816785050376,
+          "precision": 0.47338481785744096,
+          "recall": 0.41428614386816975,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_svraster_Truck_legacy/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        }
+      }
+    },
+    {
+      "id": "trianglesplatting",
+      "name": "Triangle Splatting",
+      "scores": {
+        "Barn": {
+          "f_score": 0.198097391394042,
+          "precision": 0.1659546129651046,
+          "recall": 0.24568212544242074,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/trianglesplatting_Barn_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Caterpillar": {
+          "f_score": 0.20526907361651478,
+          "precision": 0.1482476112192701,
+          "recall": 0.3335737638142378,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/trianglesplatting_Caterpillar_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Church": {
+          "f_score": 0.2754296611546183,
+          "precision": 0.23659140132457998,
+          "recall": 0.3295234098757619,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_missing_F_eval_20261015_v1/summary.json",
+            "protocol": "fixed_VoxelAtlas_C_at_A"
+          }
+        },
+        "Courthouse": {
+          "f_score": 0.12446992451558975,
+          "precision": 0.09223595476392503,
+          "recall": 0.1913370420119142,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "triangle_courthouse_train_authorized_20261008_v1/resume_20261017/result.json",
+            "protocol": "Original native Triangle mesh; common PGSR referenced-vertex readout, user fixed VoxelAtlas C @ A; no new ICP"
+          }
+        },
+        "Ignatius": {
+          "f_score": 0.3446803583134759,
+          "precision": 0.2717517989453204,
+          "recall": 0.47110945195343495,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "tnt_dtu_completed_eval_20261003/tnt/cells/trianglesplatting_Ignatius_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Meetingroom": {
+          "f_score": 0.1742074267565623,
+          "precision": 0.1586200849296904,
+          "recall": 0.19319210572396708,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_trianglesplatting_Meetingroom_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        },
+        "Truck": {
+          "f_score": 0.35067936823307944,
+          "precision": 0.2561423182791314,
+          "recall": 0.5558223892251946,
+          "provenance": {
+            "origin": "PROJECT_EVALUATED",
+            "status": "DONE",
+            "source": "remaining_geometry_20261006/eval/cells/tnt_trianglesplatting_Truck_standard_v2/result.json",
+            "protocol": "pgsr_tnt_shared_readout_not_method_official"
+          }
+        }
+      }
+    }
+  ],
+  "summary": {
+    "methods": 14,
+    "scenes": 7,
+    "validCells": 98,
+    "totalCells": 98,
+    "validCellsByMetric": {
+      "f_score": 98,
+      "precision": 98,
+      "recall": 98
+    },
+    "projectEvaluatedCells": 98,
+    "publicReferenceCells": 0
+  }
 }

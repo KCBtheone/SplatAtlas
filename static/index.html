@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#ffffff" />
     <title>SplatAtlas — Reconstruction Benchmarks</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="./plain.css?v=project-links" />
+    <link rel="stylesheet" href="./plain.css?v=vol-20261018" />
   </head>
   <body>
     <header class="topbar">
@@ -15,7 +15,7 @@
         <a class="brand" href="#top" aria-label="SplatAtlas benchmark home">SplatAtlas</a>
         <nav class="top-nav" aria-label="Benchmarks">
           <a href="#splat-atlas">Image quality</a>
-          <a href="#splat-atlas-vol">SplatAtlasVol <span>Preview</span></a>
+          <a href="#splat-atlas-vol">SplatAtlasVol</a>
         </nav>
         <button class="export-link" id="export-all" type="button">Export JSON</button>
       </div>
@@ -40,7 +40,7 @@
           </a>
         </nav>
         <p class="project-note" id="paper-draft-note">Manuscript draft — not the official version.</p>
-        <p class="project-note">SplatAtlas data is available on Hugging Face. SplatAtlasVol is in progress; its data will be uploaded when complete.</p>
+        <p class="project-note">SplatAtlas data is available on Hugging Face. SplatAtlasVol geometry results are complete: 308/308 method-scene records are available below.</p>
       </section>
 
       <section class="benchmark-section" id="splat-atlas" aria-labelledby="benchmark-title">
@@ -128,13 +128,13 @@
         <div class="vol-heading">
           <div>
             <h2 id="vol-title">SplatAtlasVol</h2>
-            <p id="vol-description">Loading provisional snapshot…</p>
+            <p id="vol-description">Loading completed geometry results…</p>
           </div>
           <p class="vol-current">Metric: <strong id="vol-primary-metric">F-score</strong> <span id="vol-primary-unit">Higher is better · %</span></p>
         </div>
-        <div class="vol-banner" role="status">
-          <strong>In progress.</strong>
-          <p>Tanks &amp; Temples and DTU are included; some values are being checked or rerun. These results are provisional.</p>
+        <div class="vol-banner is-complete" role="status">
+          <strong>Geometry evaluation complete.</strong>
+          <p>308/308 project-evaluated method-scene records: Tanks &amp; Temples 98/98 and DTU 210/210. Method-specific protocols are documented per cell.</p>
         </div>
         <p class="vol-notice" id="vol-notice"></p>
         <div class="vol-dataset-toolbar">
@@ -158,6 +158,6 @@
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=vol-20261018"></script>
   </body>
 </html>

@@ -136,6 +136,7 @@ svg { display: block; fill: none; stroke: currentColor; stroke-linecap: round; s
 .vol-current strong { color: var(--ink); font-weight: 600; }
 .vol-current span { margin-left: 3px; color: var(--quiet); }
 .vol-banner { display: flex; min-height: 36px; margin: 10px 0 0; padding: 6px 9px; align-items: baseline; gap: 8px; border-left: 2px solid #b79a62; background: #faf8f2; color: #705928; }
+.vol-banner.is-complete { border-left-color: #6c8571; background: #f5f8f5; color: #465c4a; }
 .vol-banner strong { flex: none; font-size: 10px; }
 .vol-banner p { margin: 0; font-size: 10px; }
 .vol-notice { margin: 6px 0 0; color: var(--muted); font-size: 10px; }
