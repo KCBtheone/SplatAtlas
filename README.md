@@ -7,6 +7,8 @@
 
 SplatAtlas provides a compact, table-based view of scene-level image-quality and geometry results for 3D Gaussian Splatting. Browse results by dataset or method, and select a method or value to inspect the underlying scenes.
 
+The image-quality table follows Appendix A.1, Table 4 of the current manuscript: **30 methods × 31 shared scenes**. Its 930 scene records provide PSNR, SSIM, and LPIPS-VGG, with scene-equal dataset means. Saved checkpoint stages and the evaluated configuration repairs are retained in the downloadable records and method details.
+
 ## Data availability
 
 **SplatAtlas data has been uploaded to Hugging Face.**
@@ -39,10 +41,17 @@ Open `http://127.0.0.1:4173`. Set `PORT` to use another local port.
 
 ## Result tables
 
-- `data/benchmark.json`: SplatAtlas per-scene PSNR, SSIM, and LPIPS, with dataset means over available complete scene records.
+- `data/benchmark.json`: the paper's approved 30-method cohort with complete 31-scene PSNR, SSIM, and LPIPS-VGG records and scene-equal dataset means.
 - `data/vol-benchmark.json`: completed SplatAtlasVol Tanks & Temples F-score, precision (P), and recall (R); fractional values are displayed as percentages.
 - `data/vol-dtu-benchmark.json`: completed SplatAtlasVol DTU accuracy (A), completeness (C), and CD in millimeters, with the accepted camera-matched SVRaster rerun.
 
 Unavailable or unverified values remain blank; missing cells are not imputed.
 
-The SplatAtlasVol JSON files are accepted per-cell release snapshots. Each score record retains its project-evaluation status, logical source reference, protocol, and applicable input revision. Keep this provenance when refreshing results; the legacy CSV helper does not regenerate the completed October 18 selection.
+The SplatAtlasVol JSON files are accepted per-cell release snapshots. Each score record retains its project-evaluation status, logical source reference, protocol, and applicable input revision. The image-quality refresh helper updates only `data/benchmark.json`; it leaves these completed geometry tables unchanged.
+
+Refresh image quality from the current paper exports:
+
+```sh
+node scripts/build-site-data.mjs --nvs <current-scene-csv> --methods <paper-method-register-csv>
+npm run build
+```

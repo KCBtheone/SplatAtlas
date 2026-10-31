@@ -371,7 +371,7 @@ elements.exportAll.addEventListener('click', () => {
 async function initialize() {
   try {
     const [benchmarkResponse, volResponse, dtuResponse] = await Promise.all([
-      fetch('./data/benchmark.json'),
+      fetch('./data/benchmark.json?v=common31-20261031'),
       fetch('./data/vol-benchmark.json?v=means-20261018'),
       fetch('./data/vol-dtu-benchmark.json?v=means-20261018'),
     ]);

@@ -47,7 +47,7 @@
         <div class="section-heading">
           <div>
             <h2 id="benchmark-title">Image quality</h2>
-            <p>Dataset means are shown below; select a method or value to inspect individual scenes.</p>
+            <p>30 methods on all 31 shared scenes. Dataset means are shown below; select a method or value to inspect individual scenes.</p>
           </div>
           <div class="view-switch" role="tablist" aria-label="Browse results by">
             <button class="view-tab is-active" id="view-dataset-button" data-view="dataset" type="button" role="tab" aria-selected="true">By dataset</button>
@@ -102,7 +102,7 @@
           </div>
           <footer class="table-footer">
             <span id="method-count">Loading benchmark data…</span>
-            <span>— means no verified value; means use available complete scene records.</span>
+            <span>Means weight all scenes equally. LPIPS uses VGG.</span>
           </footer>
         </div>
 
@@ -152,6 +152,6 @@
     </main>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <script type="module" src="./app.js?v=vol-means-20261018"></script>
+    <script type="module" src="./app.js?v=common31-20261031"></script>
   </body>
 </html>

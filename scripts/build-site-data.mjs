@@ -4,170 +4,104 @@ import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('../', import.meta.url));
 const inputs = parseArgs(process.argv.slice(2));
-const nvsRows = parseCsv(await readFile(inputs.nvs, 'utf8'));
-const sceneRows = parseCsv(await readFile(inputs.scenes, 'utf8'));
-const volRows = parseCsv(await readFile(inputs.vol, 'utf8'));
-
-const datasetConfig = [
-  { id: 'tandt', sourceName: 'Tanks&Temples', name: 'Tanks & Temples', short: 'T&T' },
-  { id: 'mip360', sourceName: 'Mip-NeRF 360', name: 'Mip-NeRF 360', short: 'Mip-360' },
-  { id: 'synthetic', sourceName: 'NeRF-Synthetic', name: 'NeRF Synthetic', short: 'Synthetic' },
-  { id: 'deepblending', sourceName: 'Deep Blending', name: 'Deep Blending', short: 'Deep Blending' },
-];
-const datasetBySource = new Map(datasetConfig.map((item) => [item.sourceName, item]));
-const datasetById = new Map(datasetConfig.map((item) => [item.id, item]));
-const sceneDisplay = new Map(sceneRows.map((row) => [row.SceneKey, row.DisplayName]));
-const expectedScenes = new Map(datasetConfig.map((dataset) => [dataset.id, []]));
-
-for (const row of sceneRows) {
-  const dataset = datasetBySource.get(row.Dataset);
-  if (!dataset) throw new Error(`Unknown dataset in scene inventory: ${row.Dataset}`);
-  expectedScenes.get(dataset.id).push(row.SceneKey);
-}
-
-const methods = new Map();
-const seenCells = new Set();
-for (const row of nvsRows) {
-  const dataset = datasetBySource.get(row.dataset);
-  if (!dataset) throw new Error(`Unknown dataset in NVS table: ${row.dataset}`);
-  const key = `${row.method}|${dataset.id}|${row.scene}`;
-  if (seenCells.has(key)) throw new Error(`Duplicate NVS cell: ${key}`);
-  seenCells.add(key);
-
-  let method = methods.get(row.method);
-  if (!method) {
-    method = {
-      id: row.method,
-      name: row.method_display,
-      category: row.category,
-      tier: row.tier,
-      note: row.method === '3dgsmcmc'
-        ? 'The source benchmark marks this method with a paper-level failure note; interpret its reported values with care.'
-        : '',
-      scores: {},
-      scenes: Object.fromEntries(datasetConfig.map((item) => [item.id, []])),
-    };
-    methods.set(row.method, method);
-  }
-
-  const metrics = {
-    psnr: numberOrNull(row.PSNR_dB),
-    ssim: numberOrNull(row.SSIM),
-    lpips: numberOrNull(row.LPIPS),
-  };
-  const valid = row.metric_status === 'complete' && Object.values(metrics).every(Number.isFinite);
-  method.scenes[dataset.id].push({
-    id: row.scene,
-    name: sceneDisplay.get(row.scene) ?? titleCase(row.scene),
-    metrics: valid ? metrics : { psnr: null, ssim: null, lpips: null },
-    status: valid ? 'complete' : (row.metric_status || 'missing'),
-  });
-}
-
-if (nvsRows.length !== 31 * 31 || methods.size !== 31 || sceneRows.length !== 31) {
-  throw new Error(`Unexpected SplatAtlas coverage: ${nvsRows.length} cells, ${methods.size} methods, ${sceneRows.length} scenes.`);
-}
-
-for (const method of methods.values()) {
-  for (const dataset of datasetConfig) {
-    const scenes = method.scenes[dataset.id];
-    const totals = { psnr: 0, ssim: 0, lpips: 0 };
-    let count = 0;
-    for (const scene of scenes) {
-      if (scene.status !== 'complete') continue;
-      count += 1;
-      for (const metric of Object.keys(totals)) totals[metric] += scene.metrics[metric];
-    }
-    method.scores[dataset.id] = {
-      psnr: count ? totals.psnr / count : null,
-      ssim: count ? totals.ssim / count : null,
-      lpips: count ? totals.lpips / count : null,
-      availableScenes: count,
-      totalScenes: expectedScenes.get(dataset.id).length,
-    };
-  }
-}
-
-const benchmark = {
-  title: 'SplatAtlas',
-  updated: '2026-10-13',
-  source: 'SplatAtlas core per-scene NVS table (30 displayed methods × 31 scenes; lod_gs omitted by request; incomplete cells retained).',
-  aggregation: 'Arithmetic mean over available complete scenes within each dataset. Missing cells are not imputed.',
-  datasets: datasetConfig.map((dataset) => ({
-    id: dataset.id,
-    name: dataset.name,
-    short: dataset.short,
-    scenes: expectedScenes.get(dataset.id).map((id) => ({ id, name: sceneDisplay.get(id) ?? titleCase(id) })),
-  })),
-  methods: [...methods.values()].filter((method) => method.id !== 'lod_gs').sort((a, b) => a.name.localeCompare(b.name)),
+const rows = parseCsv(await readFile(inputs.nvs, 'utf8'));
+const register = parseCsv(await readFile(inputs.methods, 'utf8'));
+const benchmark = JSON.parse(await readFile(path.join(root, 'data/benchmark.json'), 'utf8'));
+const previous = new Map(benchmark.methods.map((method) => [method.id, method]));
+const datasetIds = {
+  nerf_synthetic: 'synthetic',
+  mipnerf360: 'mip360',
+  tanks_and_temples: 'tandt',
+  deep_blending: 'deepblending',
 };
-
-const volMethods = new Map();
-const volScenes = ['Barn', 'Caterpillar', 'Church', 'Courthouse', 'Ignatius', 'Meetingroom', 'Truck'];
-const volMetrics = [
-  { id: 'f_score', label: 'F-score', unit: '%', direction: 'Higher is better' },
-  { id: 'precision', label: 'Precision (P)', unit: '%', direction: 'Higher is better' },
-  { id: 'recall', label: 'Recall (R)', unit: '%', direction: 'Higher is better' },
-];
-for (const row of volRows) {
-  let method = volMethods.get(row.method);
-  if (!method) {
-    method = { id: row.method, name: row.method_display, scores: {} };
-    volMethods.set(row.method, method);
-  }
-  const selected = ['DONE_VALID', 'DONE_USER_PRIMARY'].includes(row.geometry_status);
-  method.scores[row.scene] = {
-    f_score: selected ? numberOrNull(row.F_score) : null,
-    precision: selected ? numberOrNull(row.Precision) : null,
-    recall: selected ? numberOrNull(row.Recall) : null,
-  };
-}
-
-const vol = {
-  title: 'SplatAtlasVol',
-  dataset: 'Tanks & Temples',
-  metric: 'F-score',
-  unit: '%',
-  metrics: volMetrics,
-  snapshot: '2026-10-11',
-  status: 'in_progress',
-  statusLabel: 'Work in progress',
-  notice: 'Provisional snapshot only. Some values are under review and are being rerun; do not treat this table as final or cite it as a finalized benchmark.',
-  notes: [
-    'Use the metric selector to switch between F-score, precision (P), and recall (R); P and R come from the same selected result record. Unavailable or unverified cells remain blank.',
-    'GeoSVR and AmbiSuR have rerun entries in the project queue. The Church column is an extension scene, not one of the six core Tanks & Temples scenes.',
-    'The SplatAtlasVol NVS LPIPS values are not shown here because the historical table used an incorrect input range and standard LPIPS is being recomputed.',
-  ],
-  scenes: volScenes,
-  methods: [...volMethods.values()].sort((a, b) => a.name.localeCompare(b.name)),
-};
-
-const volValidCells = vol.methods.reduce((sum, method) => sum + Object.values(method.scores).filter((score) => Number.isFinite(score.f_score)).length, 0);
-const volValidCellsByMetric = Object.fromEntries(volMetrics.map(({ id }) => [
-  id,
-  vol.methods.reduce((sum, method) => sum + Object.values(method.scores).filter((score) => Number.isFinite(score[id])).length, 0),
+const expected = new Map(benchmark.datasets.map((dataset) => [
+  dataset.id, new Map(dataset.scenes.map((scene) => [scene.id.toLowerCase(), scene])),
 ]));
-vol.summary = {
-  methods: vol.methods.length,
-  scenes: volScenes.length,
-  validCells: volValidCellsByMetric.f_score,
-  totalCells: vol.methods.length * volScenes.length,
-  validCellsByMetric: volValidCellsByMetric,
+const notes = {
+  '3dgsmcmc': 'Four T&T scenes use the completed SfM initialization repairs: auditorium, lighthouse, palace and temple.',
+  lightgaussian: '10k checkpoints are used for stump, playground and truck; the other checkpoints are 30k.',
+  mipsplatting: 'A 20k checkpoint is used for ballroom; the other checkpoints are 30k.',
+  radegs: 'Bicycle, stump and treehill use the completed cap-5M configuration repairs.',
+  octree_gs: '40k checkpoints are used for all scenes.',
+  ghap: 'The evaluated GHAP configuration retains GMR at 15k with ratio 0.1.',
 };
+const approved = new Set(register.map((row) => row.method));
+if (approved.size !== register.length || register.some((row) => row.nvs_scenes !== '31')) {
+  throw new Error('The approved paper method register must contain unique full31 methods.');
+}
+if (rows.some((row) => !approved.has(row.method))) throw new Error('Scene data includes a method outside the approved paper table.');
 
-await writeFile(path.join(root, 'data', 'benchmark.json'), `${JSON.stringify(benchmark, null, 2)}\n`);
-await writeFile(path.join(root, 'data', 'vol-benchmark.json'), `${JSON.stringify(vol, null, 2)}\n`);
-console.log(`Prepared ${benchmark.methods.length} methods, ${benchmark.datasets.length} datasets, ${seenCells.size} scene cells and ${volValidCells}/${vol.summary.totalCells} provisional SplatAtlasVol values.`);
+const methods = register.map((entry) => {
+  const selected = rows.filter((row) => row.method === entry.method);
+  if (selected.length !== 31 || new Set(selected.map((row) => row.scene)).size !== 31) {
+    throw new Error('Incomplete or duplicate scene coverage for ' + entry.method);
+  }
+  const old = previous.get(entry.method);
+  const method = {
+    id: entry.method,
+    name: entry.method_display,
+    ...(old?.category ? { category: old.category } : {}),
+    ...(old?.tier ? { tier: old.tier } : {}),
+    note: notes[entry.method] || '',
+    scores: {},
+    scenes: Object.fromEntries(benchmark.datasets.map((dataset) => [dataset.id, []])),
+  };
+  for (const row of selected) {
+    const dataset = datasetIds[row.dataset];
+    const scene = expected.get(dataset)?.get(row.scene.toLowerCase());
+    if (!scene) throw new Error('Unexpected scene in the paper source: ' + row.scene);
+    const value = (text) => text?.trim() ? Number(text) : NaN;
+    const metrics = { psnr: value(row.PSNR), ssim: value(row.SSIM), lpips: value(row.LPIPS_VGG) };
+    if (!Object.values(metrics).every(Number.isFinite) || !Number.isInteger(Number(row.n_scored_views)) || Number(row.n_scored_views) < 1) {
+      throw new Error('Incomplete full-view metrics: ' + row.method + '/' + row.scene);
+    }
+    method.scenes[dataset].push({
+      id: scene.id,
+      name: scene.name,
+      metrics,
+      status: 'complete',
+      iteration: Number(row.iteration),
+      views: Number(row.n_scored_views),
+      configuration: row.configuration,
+      qualification: row.qualification,
+    });
+  }
+  for (const dataset of benchmark.datasets) {
+    const scenes = method.scenes[dataset.id];
+    if (scenes.length !== dataset.scenes.length || scenes.some((scene) => !expected.get(dataset.id).has(scene.id.toLowerCase()))) {
+      throw new Error('Dataset coverage mismatch: ' + entry.method + '/' + dataset.id);
+    }
+    const order = new Map(dataset.scenes.map((scene, index) => [scene.id, index]));
+    scenes.sort((a, b) => order.get(a.id) - order.get(b.id));
+    method.scores[dataset.id] = {
+      ...Object.fromEntries(['psnr', 'ssim', 'lpips'].map((metric) => [
+        metric, scenes.reduce((sum, scene) => sum + scene.metrics[metric], 0) / scenes.length,
+      ])),
+      availableScenes: scenes.length,
+      totalScenes: dataset.scenes.length,
+    };
+  }
+  return method;
+});
+
+benchmark.updated = '2026-10-31';
+benchmark.source = 'Paper Appendix A.1, Table 4: 30 approved methods on all 31 shared scenes; full held-out native RGB evaluation of the recorded checkpoints.';
+benchmark.aggregation = 'Scene-equal dataset means. Each scene uses its complete held-out RGB image set. LPIPS uses VGG. Checkpoint stages and configuration repairs are retained in the scene records and method notes.';
+benchmark.methods = methods;
+await writeFile(path.join(root, 'data/benchmark.json'), JSON.stringify(benchmark, null, 2) + '\n');
+console.log('Updated image quality: ' + methods.length + ' methods, ' + rows.length + ' scene records, ' + methods.length * benchmark.datasets.length + ' dataset summaries. Geometry data left unchanged.');
 
 function parseArgs(args) {
   const values = {};
   for (let index = 0; index < args.length; index += 2) {
     const key = args[index];
     const value = args[index + 1];
-    if (!['--nvs', '--scenes', '--vol'].includes(key) || !value) throw new Error('Usage: node scripts/build-site-data.mjs --nvs <csv> --scenes <csv> --vol <csv>');
+    if (!['--nvs', '--methods'].includes(key) || !value) {
+      throw new Error('Usage: node scripts/build-site-data.mjs --nvs <current-scene-csv> --methods <paper-method-register-csv>');
+    }
     values[key.slice(2)] = path.resolve(value);
   }
-  for (const key of ['nvs', 'scenes', 'vol']) if (!values[key]) throw new Error('Usage: node scripts/build-site-data.mjs --nvs <csv> --scenes <csv> --vol <csv>');
+  if (!values.nvs || !values.methods) throw new Error('Both current scene data and the approved paper method register are required.');
   return values;
 }
 
@@ -194,12 +128,3 @@ function parseCsv(source) {
   return rows.map((values) => Object.fromEntries(headers.map((header, index) => [header, values[index] ?? ''])));
 }
 
-function numberOrNull(value) {
-  if (value === '' || value == null) return null;
-  const parsed = Number(value);
-  return Number.isFinite(parsed) ? parsed : null;
-}
-
-function titleCase(value) {
-  return value.replace(/([a-z])([A-Z])/g, '$1 $2').replaceAll('_', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
-}
