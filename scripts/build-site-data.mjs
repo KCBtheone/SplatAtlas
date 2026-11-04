@@ -24,6 +24,7 @@ const notes = {
   radegs: 'Bicycle, stump and treehill use the completed cap-5M configuration repairs.',
   octree_gs: '40k checkpoints are used for all scenes.',
   ghap: 'The evaluated GHAP configuration retains GMR at 15k with ratio 0.1.',
+  gslpm: 'Image scores use retained training-time RGB on 30 scenes and an independently reloaded retrained 30k Room model. Native and intervention readouts retain their recorded model versions.',
 };
 const approved = new Set(register.map((row) => row.method));
 if (approved.size !== register.length || register.some((row) => row.nvs_scenes !== '31')) {
@@ -84,8 +85,8 @@ const methods = register.map((entry) => {
   return method;
 });
 
-benchmark.updated = '2026-10-31';
-benchmark.source = 'Paper Appendix A.1, Table 4: 30 approved methods on all 31 shared scenes; full held-out native RGB evaluation of the recorded checkpoints.';
+benchmark.updated = '2026-11-04';
+benchmark.source = 'Paper Appendix A: 30 approved methods on all 31 shared scenes; complete held-out RGB evaluation from the recorded image sources.';
 benchmark.aggregation = 'Scene-equal dataset means. Each scene uses its complete held-out RGB image set. LPIPS uses VGG. Checkpoint stages and configuration repairs are retained in the scene records and method notes.';
 benchmark.methods = methods;
 await writeFile(path.join(root, 'data/benchmark.json'), JSON.stringify(benchmark, null, 2) + '\n');
