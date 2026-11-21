@@ -43,7 +43,7 @@ Open `http://127.0.0.1:4173`. Set `PORT` to use another local port.
 
 - `data/benchmark.json`: the paper's approved 30-method cohort with complete 31-scene PSNR, SSIM, and LPIPS-VGG records and scene-equal dataset means.
 - `data/vol-benchmark.json`: completed SplatAtlasVol Tanks & Temples F-score, precision (P), and recall (R); fractional values are displayed as percentages.
-- `data/vol-dtu-benchmark.json`: completed SplatAtlasVol DTU accuracy (A), completeness (C), and CD in millimeters, with the accepted camera-matched SVRaster rerun.
+- `data/vol-dtu-benchmark.json`: completed SplatAtlasVol DTU accuracy (A), completeness (C), and CD in millimeters.
 
 Unavailable or unverified values remain blank; missing cells are not imputed.
 
