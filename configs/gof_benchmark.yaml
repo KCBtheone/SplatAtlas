@@ -1,0 +1,14 @@
+method_name: gof
+global_settings:
+  iterations: 30000
+  seeds:
+  - 0
+datasets:
+- name: Tanks_and_Temples
+  base_path: ${SPLATATLAS_DATA_ROOT}/tnt
+  resolution: 2
+  scenes:
+  - church
+  - courthouse
+  - ignatius
+  - meetingroom

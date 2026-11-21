@@ -1,0 +1,30 @@
+method_name: "sogs"
+global_settings:
+  iterations: 30000
+  seeds: [0]
+
+datasets:
+  - name: "Tanks and Temples"
+    base_path: "${SPLATATLAS_DATA_ROOT}/tnt"
+    resolution: 2
+    scenes: ["barn", "caterpillar", "truck", "playground", "lighthouse", "train", "auditorium", "ballroom", "courtroom", "museum", "palace", "temple"]
+
+  - name: "Mip-NeRF 360 Indoor"
+    base_path: "${SPLATATLAS_DATA_ROOT}/360"
+    resolution: 2
+    scenes: ["bonsai", "counter", "kitchen", "room"]
+
+  - name: "Mip-NeRF 360 Outdoor"
+    base_path: "${SPLATATLAS_DATA_ROOT}/360"
+    resolution: 4
+    scenes: ["bicycle", "flowers", "garden", "stump", "treehill"]
+
+  - name: "Synthetic NeRF"
+    base_path: "${SPLATATLAS_DATA_ROOT}/Synthetic_NeRF_Verified/Synthetic_NeRF"
+    resolution: 1
+    scenes: ["Chair", "Drums", "Ficus", "Hotdog", "Lego", "Materials", "Mic", "Ship"]
+
+  - name: "Deep Blending"
+    base_path: "${SPLATATLAS_DATA_ROOT}/deepblending_clean"
+    resolution: 1
+    scenes: ["Playroom", "DrJohnson"]

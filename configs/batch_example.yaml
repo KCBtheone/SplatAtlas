@@ -1,0 +1,8 @@
+global:
+  iterations: 30000
+tasks:
+  - method: vanilla_3dgs
+    base_path: ${SPLATATLAS_DATA_ROOT}/tnt
+    resolution: 2
+    scenes:
+      - courthouse
