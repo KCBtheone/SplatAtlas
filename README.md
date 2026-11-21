@@ -11,6 +11,18 @@ The experiments reported in the paper are complete. Additional runs are underway
 - [Model and experiment archives](https://huggingface.co/datasets/KCBtheone/splatatlas-runs)
 - [Third-party notices](THIRD_PARTY_NOTICES.md)
 
+## What the paper finds
+
+The benchmark asks what different Gaussian splatting methods learn when they render the same scene at similar quality. It links **930 method–scene results** to image scores, training histories, checkpoints, and native model assets. That makes it possible to compare two trained representations on the same scene, follow a method across scenes, or restore a saved state and measure what changes after an edit.
+
+- **Similar image scores can hide very different representations.** Across 31 scenes, the median gap between the 25th and 75th percentiles of PSNR across methods was **0.575 dB**; that gap was below **1 dB** in 28 scenes. Methods with similar scores could still differ substantially in how many Gaussians they used, how opaque or elongated those Gaussians were, and where they placed them.
+- **Some representation differences recur across scenes.** Scene differences explain most of the variation in image scores, while the choice of method accounts for most of the variation in mean opacity and axis ratio in the native attribute analysis. Methods often retain similar relative shape rankings on new scenes. Counts and scales also show recurring patterns: method-specific multipliers applied to a scene reference help predict both on held-out scenes.
+- **Methods share broad spatial patterns while allocating Gaussians differently in individual regions.** Knowing how one method distributes its Gaussians helps predict where another concentrates them beyond knowing which locations are occupied. The remaining differences in regional shares are much larger than those seen when sampling the same trained state twice.
+- **Counting Gaussians can give a different answer from measuring what they contribute to the image.** The paper selected method pairs that ranked two fixed regions in opposite orders by Gaussian count. On those comparisons, the methods agreed on which region contributed more after native projection and visibility weighting in **92.48%** of cases, weighting the 30 eligible scenes equally.
+- **Edit responses carry information that transfers across scenes.** In fixed-state deletion tests, a method’s responses measured on other scenes helped predict how much its rendered image would change on a held-out scene for some deletion strengths. The comparison used a count-based calibration shared across methods, and the advantage depended on the fraction removed.
+
+Image-quality results cover all 30 methods. Analyses that depend on native 3D Gaussians or renderer internals use the compatible methods and states specified in the paper.
+
 ## Use the framework
 
 This release includes adapters for the 30 methods in the paper. Each adapter uses the corresponding upstream setup and its Python and CUDA dependencies.
